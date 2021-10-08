@@ -16,13 +16,14 @@ class style():
     RESET = '\033[0m'
     END      = '\33[0m'
     ORANGE ='\033[43m'
-# Connect to the database
+
+    
 def connectDB():
     return sqlite3.connect("database.db")
 db=connectDB()
 cursor=connectDB().cursor()
 
-## Function to insert Data Into Database
+
 def dataInsert(db):
     movie_name=input("Enter Movie: ")
     actor=input("Enter Actor name: ")
@@ -35,15 +36,11 @@ def dataInsert(db):
     db.commit()
     print( style.GREEN  + "\nData saved : ) " + style.END)
 
-
-## Function to Remove data from Database
 def removeData(db):
     cursor.execute("""DELETE FROM database;""").fetchall()
     db.commit()
     print(style.RED + "Data Deleted !" + style.END)
 
-
-## Function to Find Movies By an Actor
 def actor():
     act=str(input("Enter Actor Name : "))
     c=cursor.execute("""SELECT movie FROM database WHERE actor=(?);""",(act,)).fetchall()
@@ -53,8 +50,6 @@ def actor():
     if c==[]:
         print(style.RED + "No Actor Found : (" + style.END)   
 
-
-## Function to Find Movies By an Actress
 def actress():
     act=str(input("Enter Actress Name : "))
     c=cursor.execute("""SELECT movie FROM database WHERE actress=(?);""",(act,)).fetchall()
@@ -65,8 +60,6 @@ def actress():
          print(style.RED + "No Actress Found : (" + style.END)  
 
 
-
-## Function to Find Movies By a Director
 def director():
     director=str(input("Enter the director name : "))
     c=cursor.execute("""SELECT movie FROM database WHERE director=(?);""",(director,)).fetchall()
@@ -76,7 +69,7 @@ def director():
     if c==[]:
          print(style.RED + "No Dicrectors Found : (" + style.END)  
 
-## Function to Find Movies By a Year             
+       
 def year():
     year=str(input("Enter the release year : "))
     c=cursor.execute("""SELECT movie FROM database WHERE year=(?);""",(year,)).fetchall()
@@ -88,7 +81,6 @@ def year():
 
 
 
-## List the Database
 def displayDB():
     Movie =  []  
     Actor = []
@@ -111,7 +103,6 @@ def displayDB():
     print("Year  = ", Year)
 
 
-#Function to create Table
 def createTable(db):
     t=cursor.execute("""SELECT * FROM sqlite_master WHERE type='table' and name="database" ; """).fetchall()
     if t==[]:
@@ -121,7 +112,6 @@ def createTable(db):
     else:
         print(style.RED  +'Table Already Exist : (' +   style.END)
 
-## Function to check Database connection
 def testCon():
     if connectDB() is not None:
         print(style.GREEN + "Connected : )" + style.END)
@@ -131,8 +121,6 @@ def testCon():
 def clrscr():
     os.system('cls' if os.name=='nt' else 'clear')
 
-
-## Main Function
 def main():
     while(1):
         clrscr()
