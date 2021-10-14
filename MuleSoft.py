@@ -125,7 +125,7 @@ def main():
     while(1):
         clrscr()
         print(style.BLUE +" **********************" + style.END)
-        print(style.RED  +"*                    Movie DB by Adithya                         *" + style.END)
+        print(style.RED  +"*                    Movie DB by Elvin                        *" + style.END)
         print(style.BLUE  +" **********************" + style.END)
         print(style.GREEN +" 1. Is the DataBase Connected ? createTable: Error   ")
         print(" 2. Insert data                                      ")
